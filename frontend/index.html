@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Task Analyzer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 compact-navbar">
+    <div class="container justify-content-center">
+      <a class="navbar-brand mx-auto fw-bold" href="#">Smart Task Analyzer</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container-fluid py-4">
+    <div class="row">
+      
+      <!-- Left Column: Task Input -->
+      <div class="col-12 col-lg-5 mb-4">
+        <section class="input">
+          
+          <!-- Task Input Card -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">Task Input</div>
+            <div class="card-body">
+              <form id="taskForm">
+                <div class="mb-3">
+                  <label for="title" class="form-label">Title</label>
+                  <input type="text" id="title" class="form-control" placeholder="Enter task title" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="due_date" class="form-label">
+                     <i class="fas fa-calendar-alt"></i> Due Date
+                  </label>
+                  <input type="date" id="due_date" class="form-control" placeholder="Select due date">
+                </div>
+
+                <div class="mb-3">
+                  <label for="importance" class="form-label">
+                     <i class="bi bi-star-fill"></i>Importance (1–10)
+                  </label>
+                  <input type="number" id="importance" class="form-control" placeholder="Enter importance (1–10)" min="1" max="10">
+                </div>
+
+                <div class="mb-3">
+                  <label for="estimated_hours" class="form-label">Estimated Hours</label>
+                  <input type="number" id="estimated_hours" class="form-control" placeholder="Enter estimated hours" min="0" step="1">
+                </div>
+
+                <div class="mb-3">
+                  <label for="dependencies" class="form-label">Dependencies</label>
+                  <input type="text" id="dependencies" class="form-control" placeholder="Comma-separated task titles">
+                </div>
+
+                <button id="addTask" class="btn btn-primary w-100">
+                  <i class="fas fa-plus"></i> Add Task
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Bulk JSON Input Card -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-secondary text-white">Bulk Input (JSON)</div>
+            <div class="card-body">
+              <textarea id="taskInput" class="form-control mb-3" rows="6" placeholder='[{"title":"Fix login bug",...}]'></textarea>
+              <select id="strategy" class="form-select mb-3">
+                <option value="smart_balance">Smart Balance</option>
+                <option value="urgency_first">Urgency First</option>
+                <option value="impact_first">Impact First</option>
+              </select>
+              <div class="d-flex gap-2">
+                <button id="analyze" class="btn btn-success w-100">
+                  <i class="fas fa-chart-line"></i>Analyze Tasks
+                </button>
+                <button id="clearBtn" class="btn btn-outline-danger w-100">
+                   <i class="fas fa-trash"></i>Clear All Tasks
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+      <!-- Right Column: Results -->
+      <div class="col-12 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white">Results</div>
+          <div class="card-body" id="results" style="min-height: 300px; overflow-y: auto;">
+            <!-- Cards will be injected here -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center mt-5 text-muted">
+    <small>Built by Dhivya Dharshni • Powered by Django & Bootstrap</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
